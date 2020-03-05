@@ -18,9 +18,17 @@ var dbConn = mongoose.connection
 dbConn.on("error",function(){
   console.err
 })
+// 프로젝트가 시작될때 한번만 감시를 하고 이후 연결이 유지되면 더이상 감시하지 말라
 dbConn.on("open",function(){
   console.log("MongoDB Open OK!!")
 })
+dbConn.on("disconnected",function(){
+  console.log("MongoDB Close!!")
+})
+dbConn.on("connected",function(){
+  console.log("MongoDB connected!!")
+})
+
 
 // 커넥션 생성
 mongoose.connect("mongodb://localhost/mydb")
