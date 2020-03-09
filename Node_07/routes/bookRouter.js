@@ -3,7 +3,16 @@ var router = express.Router()
 var bookVO = require("../models/bookVO")
 
 router.get("/",function(req,res){
-    bookVO.find({},function(err,books){
+    // bookVO.find({},function(err,books){
+    //     res.render("book/list",{books:books})
+    // })
+    // mongoose 5.x 미만 .then()
+    // mongoose 5.x 이상 .exec()
+    // sort({칼럼 : 'asc'}), sort({칼럼 : 'desc'})
+    bookVO.find({})
+    .limit(10).skip(0)
+    .sort({bTitle:'asc'}) // 1: asc, -1: desc
+    .exec(function(err,books){
         res.render("book/list",{books:books})
     })
 })
