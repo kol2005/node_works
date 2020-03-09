@@ -1,0 +1,10 @@
+<footer>
+    <adress>Copy Right &copy; naver@naver.com</adress>
+    <p><%- book.bTitle %></p>
+    <p><%- book.bWriter %></p>
+    <p><%- book.bComp %></p>
+    <p><%- book.bPrice %></p>
+    <% books.forEach(function(b){ %>
+        <p><%= b.Title %> : <%- b.Title %></p>
+    <% }) %>
+</footer>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css'>
+    <script src='https://code.jquery.com/jquery-latest.min.js'></script>
+</head>
+<script>
+    $(function(){
+        $("#btn_insert").click(function(){
+            document.location.href="/book/insert"
+        })
+
+        $(".book_list").click(function(){
+            let id = $(this).data("id")
+            document.location.href="/book/update/"+id
+        })
+    })
+</script>
+<body>
+    <header><h1>도서정보 관리</h1></header>
+    <table class="w3-table w3-striped w3-border">
+        <tr>
+            <th>NO</th>
+            <th>타이틀</th>
+            <th>저자</th>
+            <th>출판사</th>
+            <th>가격</th>
+        </tr>
+        <% books.forEach(function(b){ %>
+        <tr class="book_list" data-id="<%- b.id %>">
+            <td>index=i</td>
+            <td><%- b.bTitle %></td>
+            <td><%- b.bWriter %></td>
+            <td><%- b.bComp %></td>
+            <td><%- b.bPrice %></td>
+        </tr>
+        <% }) %>
+    </table>
+    <button id="btn_insert">추가</button>
+</body>
+</html>

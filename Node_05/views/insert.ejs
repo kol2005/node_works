@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<script>
+    $(function(){
+        $("#btn_insert").click(function(){
+            let name = $("#bTitle").val()
+            $.get("/book/name",{name:name},function(result){
+                if(result){
+                    let retName = result.bTitle
+                    alert(retName + "\n" + name)
+                    if(name == retName){
+                        alert("이미 등록된 도서 입니다")
+                        return false
+                    }
+                }
+                $("form").submit()
+            })
+        })
+
+        $("#btn_delete").click(function(){
+            if(confirm("삭제할까요?")){
+                document.location.replace("/book/delete/#{book._id}")
+            }
+        })
+        $("#btn_list").click(function(){
+            document.location.replace("/book")
+        })
+    })
+</script>
+<body>
+    <header><h1>도서정보 관리</h1></header>
+    <form method="POST">
+        <input name="bTitle" value="<%- book.bTitle %>" type="text" class=inputClasses placeholder="제목">
+        <input name="bWriter" value="<%- book.bWriter %>" type="text" class=inputClasses placeholder="저자">
+        <input name="bComp" value="<%- book.bComp %>" type="text" class=inputClasses placeholder="출판사">
+        <input name="bPrice" value="<%- book.bPrice %>" type="text" class=inputClasses placeholder="가격">
+        <button id="btn_insert">저장</button>
+        <button id="btn_delete">삭제</button>
+    </form>
+
+
+    <button id="btn_list"><a href="/book">목록으로</a></button>
+</body>
+</html>
