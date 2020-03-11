@@ -123,25 +123,6 @@ module.exports = function(app,config){
             })
         })
 
-
-        // gjStation.findAndCountAll({
-        //     limit : pageLimit,
-        //     offset : offset
-        // })
-        // .then(function(result){
-        //     let pageCount = Math.ceil(result.count / pageLimit)
-        //     let pageArray = paginate.getArrayPages(req)(
-        //         pageLimit,pageCount,req.query.page
-        //     )
-        //     res.render("bjbus/station",{
-        //         stations:result.rows,// 실제 리스트데이터
-        //         pageCount:pageCount,
-        //         itemCount : result.count,// 전체 개수
-        //         currentPage : req.query.page,
-        //         pages:pageArray
-        //     })
-        // })
-
         // gjStation.find({})
         // .skip(100)
         // .limit(100)
