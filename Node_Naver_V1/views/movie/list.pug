@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+
+
+
+    // 전체 감싸기
+    div.w3-content.w3-display-container
+
+        each movie,index in movies
+            div.w3-display-container.m_title
+                p.w3-border.w3-padding
+                        // HTML 코드에 보이는 주석
+                        //- HTML코드에 보이지 않는 주석
+                        //- !{} : html tag가 포함된 문자열을 tag를 반영하면서 
+                        a(href=movie.link) !{movie.title}
+                p.m_image
+                        img(src=movie.image)
+                div.w3-container.w3-padding-4
+                    p= movie.subtitle
+                div.w3-container.w3-padding-4
+                    p= movie.pubDate
+                div.w3-container.w3-padding-4
+                    p= movie.deirector
+                div.w3-container.w3-padding-4
+                    p= movie.actor
+                div.w3-container.w3-padding-4
+                    p= movie.useRating
