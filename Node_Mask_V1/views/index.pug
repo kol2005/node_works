@@ -5,6 +5,7 @@ block content
   script.
     $(function(){
 
+
       // 마커를 찍기 위한 위,경도 데이터를 배열로 잡기
       // router에서 보낸 데이터를 pug 파일의 js코드에서 캐치하기
       let marketList = !{JSON.stringify(stores)}
@@ -31,6 +32,16 @@ block content
                   market.addr + "<br>" + market.remain_stat
         })
 
+
+      $(".mask-point").click(function(){
+        let id = $(this).data('id')
+        $.ajax({
+          data : {id:id},
+          success : function(result){
+            
+          }
+        })
+      })
       })
 
     })
@@ -50,10 +61,12 @@ block content
         th 경도
         th 재고상태
       each market,index in stores
-        tr
+        tr.mask-point(data-id=market.code)
           td= market.name
           td= market.addr
           td= market.lng
           td= market.lat
           td= market.remain_stat
+
+
 
