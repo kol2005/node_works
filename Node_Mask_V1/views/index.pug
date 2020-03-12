@@ -14,6 +14,8 @@ block content
       let initLat = marketList[ marketList.length - 1 ].lat
       let initLng = marketList[ marketList.length - 1 ].lng
 
+      let markers = {}
+
       var map = new Tmapv2.Map("map_div",{
         width : '90%',
         height: '500px',
@@ -21,27 +23,35 @@ block content
         zoom:15
       })
 
-      let marker = {}
+      // 원하는 곳에 마커 찍기
+      map.addListener('click',function(e){
 
+        var lnglat = e.latLng
+        markers = new Tmapv2.Marker({
+          position : new Tmapv2.LatLng(lnglat.lat(),lnglat.lng()),
+          draggable:true,
+          map : map,
+        })
+      })
+
+      
+      //- $(".mask-point").click(function(){
+      //-   let id = $(this).data(id)
+      //-   markers = new Tmapv2.Marker({
+      //-     position : new Tmapv2.LatLng(market.lng,market.lat)
+      //-     map : map,
+      //-   })
+      //- })
+      
       // 마커 찍기
       marketList.forEach(function(market,index){
-        marker[index] = new Tmapv2.Marker({
+        markers[index] = new Tmapv2.Marker({
           position : new Tmapv2.LatLng(market.lat,market.lng),
           map : map,
           title : market.name + "<br>" +
                   market.addr + "<br>" + market.remain_stat
         })
 
-
-      $(".mask-point").click(function(){
-        let id = $(this).data('id')
-        $.ajax({
-          data : {id:id},
-          success : function(result){
-            
-          }
-        })
-      })
       })
 
     })
