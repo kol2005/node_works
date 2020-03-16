@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+
+    table.w3-table.w3-table-all
+        tr
+            th 제목
+            th 이미지
+            th 저자
+            th 가격
+            th 출판사
+            th ISBN
+            each book,index in books
+                tr
+                    td
+                        a(href=book.link) !{book.title}
+                    td
+                        img(src=book.image)
+                    td= book.author
+                    td= book.price
+                    td= book.publisher
+                    td= book.isbn
+
