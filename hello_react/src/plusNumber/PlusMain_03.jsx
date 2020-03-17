@@ -14,9 +14,19 @@ const PlusMain_03 = () => {
   // useState()
   // 함수형 콤포넌트에서 state형 변수를 선언하고
   // 초기화를 수행하는 method
+  // 변수형이 [변수명, 함수명]형식의 배열로 생성한다
   const [message, setMesaage] = useState("");
 
-  return <div></div>;
+  const onInput = () => setMesaage("어서오세요");
+  const onOutput = () => setMesaage("안녕히 가세요");
+
+  return (
+    <div>
+      <button onClick={onInput}>입장</button>
+      <button onClick={onOutput}>퇴장</button>
+      <h1>{message}</h1>
+    </div>
+  );
 };
 
 export default PlusMain_03;
