@@ -41,8 +41,14 @@ class App extends Component {
   };
 
   // Enter키를 눌렀을때 자동으로 추가 버튼이 클릭되도록
+  // == : equal 연산자,eq 연산을 할때 자동으로 형 변환을 수행
+  //      어떤 경우에는 전혀 예상치 못한 true가 나오기도 한다
+
+  // === : identity 연산자,객체, 배열 등을 eq 연산을 하거나 형 변환이 되면
+  //        안되는 부분들에서
+  // is 연산자와 비슷한 기능
   handleKeyPress = e => {
-    if (e.key == "Enter") {
+    if (e.key === "Enter") {
       this.handleCreate();
     }
   };
@@ -60,6 +66,36 @@ class App extends Component {
     });
   };
 
+  handleToggle = id => {
+    const { todoList } = this.state;
+
+    // id 매개변수 변수에 담겨 있는 값이
+    // 객체 배열의 몇번째 위치 값이냐?
+    const index = todoList.findIndex(todo => todo.id === id);
+
+    // 인덱스에 해당하는 요소를 추출
+    const selectTodo = todoList[index];
+
+    // this.setState({
+    //   checked: !selectTodo.checked
+    // });
+
+    // 기존의 todoList를 nextTodoList에 복사해 두기
+    const nextTodoList = [...todoList];
+
+    // 기존에 checked 값이 true -> false, false -> true
+    nextTodoList[index] = {
+      ...selectTodo,
+      checked: !selectTodo.checked
+    };
+
+    // 여기까지가 1개 아이템의 checked값을 변경시키는 코드
+    // 여기에 오면 비로소 render()를 호출해서 화면에 반영을 한다
+    this.setState({
+      todoList: nextTodoList
+    });
+  };
+
   // react LifeCycle 중에 작동되는 method
   // 최초에 어플이 실행되면 한번 작동이 되고
   // 데이터나, 화면 디자인이 변경되면 호출되는 method
@@ -69,7 +105,7 @@ class App extends Component {
     const { input, todoList } = this.state;
 
     // 현재 클래스에서 만든 method를 통째로 자식 컴포넌트에 전달하기 위해서 props로 생성
-    const { handleCreate, handleChange, handleKeyPress } = this;
+    const { handleCreate, handleChange, handleKeyPress, handleToggle } = this;
 
     return (
       <div>
@@ -79,6 +115,7 @@ class App extends Component {
           onCreate={handleCreate}
           onChange={handleChange}
           onKeyPress={handleKeyPress}
+          onToggle={handleToggle}
         />
       </div>
     );
