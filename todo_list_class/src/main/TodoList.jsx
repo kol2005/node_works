@@ -17,9 +17,9 @@ import TodoItem from "./TodoItem";
     4. componentDidMount가 실행된다
 */
 class TodoList extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   /*
   화면에 리스트를 표시하기 위한 todoList 배열이
@@ -38,29 +38,35 @@ class TodoList extends Component {
 
   render() {
     // 부모 컴포넌트에서 전달받은 데이터를 분해
-    const { todoList, onToggle } = this.props;
+    const { todoList, onToggle, onDelete } = this.props;
     const todoMaps = todoList.map(({ id, text, checked }) => (
-      <TodoItem id={id} text={text} checked={checked} onToggle={onToggle} />
+      <TodoItem
+        id={id}
+        text={text}
+        checked={checked}
+        onToggle={onToggle}
+        onDelete={onDelete}
+      />
     ));
     return <div>{todoMaps}</div>;
   }
   //   v17 이후에서는 사용불가 상태
-  componentWillMount() {}
+  // componentWillMount() {}
 
   //   v17 이후에서는 사용불가 상태
-  componentDidMount() {}
+  // componentDidMount() {}
 
   //   v17 이후에서는 사용불가 상태
   // getDeriverdStateFromProps() 으로 변경
-  componentWillReceiveProps(nextProps) {}
+  // componentWillReceiveProps(nextProps) {}
 
   //   v17 이후에서는 사용불가 상태
   // getSnapshotBeforeUpdate()
-  componentWillUpdate(nextProps, nextState) {}
+  // componentWillUpdate(nextProps, nextState) {}
   //   v17 이후에서는 사용불가 상태
-  componentDidUpdate(prevProps, prevState) {}
+  // componentDidUpdate(prevProps, prevState) {}
 
-  componentWillUnmount() {}
+  // componentWillUnmount() {}
 }
 
 export default TodoList;
