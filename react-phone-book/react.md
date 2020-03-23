@@ -24,7 +24,8 @@
 - 두번째 Main 컴포넌트에서 state 변수를 변경하는 method를 선언
 - 세번째 이 method를 값을 변경하고자 하는 Sub 컴포넌트에게 props로 전달을 한다
 
-* 이때 Main에 선언된 컴포넌트에 매개변수를 받을 수 있도록 선언할 수 있다 \*네번째 props로 전달받은 method를 callbacl으로 호출한다
+* 이때 Main에 선언된 컴포넌트에 매개변수를 받을 수 있도록 선언할 수 있다
+* 네번째 props로 전달받은 method를 callback으로 호출한다
 * 이때 callbacl method에 필요한 값을 파라메터로 전달할 수 있다
 * 그러면 실제로는 Main 컴포넌트에 선언된 method가 실행되면서 Main 컴포넌트에 선언된 state 변수가 변경이 될 것이다
 * 그와 동시에 state 변수를 props로 전달받아 화면에 표시해 놓은 Sub 컴포넌트도 같이 rendering 되어 값이 표현된다
