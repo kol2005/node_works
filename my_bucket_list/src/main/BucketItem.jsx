@@ -3,7 +3,8 @@ import React, { Component } from "react";
 class BucketItem extends Component {
   state = {
     isEditing: false,
-    b_title: ""
+    b_bucket: "",
+    b_checked: false
   };
 
   inputClick = ev => {
@@ -13,6 +14,23 @@ class BucketItem extends Component {
   toggleEdit = () => {
     const { isEditing } = this.state;
     this.setState({ isEditing: !isEditing });
+  };
+
+  handleToggle = ev => {
+    if (window.confirm("완료하셨습니까?")) {
+      const { buc, buc_main_url } = this.props;
+      this.setState({ b_checked: !this.state.b_checked });
+      const data = { _id: buc._id, b_checked: this.state.b_checked };
+      fetch(buc_main_url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+    }
+    // 상위로 이벤트 버블링(전파) 금지
+    ev.stopPropagation();
   };
 
   editInput = ev => {
@@ -58,13 +76,14 @@ class BucketItem extends Component {
   };
 
   render() {
-    const { buc } = this.props;
+    const { buc, checked } = this.props;
+
     if (this.state.isEditing) {
     }
     return (
-      <tr data-id={buc._id} onClick={this.toggleEdit}>
-        <td>{buc.b_date}</td>
-        <td>
+      <tr data-id={buc._id} onClick={this.toggleEdit} className="tr-buc-list">
+        <td className={`buc-date ${checked ? "checked" : ""}`}>{buc.b_date}</td>
+        <td className={`buc-bucket ${checked ? "checked" : ""}`}>
           {this.state.isEditing ? (
             <div>
               <input
@@ -72,16 +91,29 @@ class BucketItem extends Component {
                 onClick={this.inputClick}
                 onChange={this.editInput}
               />
-              <button type="button" onClick={this.updateHandle}>
-                완료
+              <button
+                type="button"
+                className="w3-button w3-white w3-border w3-border-red w3-round-large"
+                onClick={this.updateHandle}
+              >
+                수정
               </button>
             </div>
           ) : (
             <span>{buc.b_bucket}</span>
           )}
         </td>
+        <td className={`buc-limitdate ${checked ? "checked" : ""}`}>
+          {buc.b_limitdate}
+        </td>
+        <td onClick={this.handleToggle}>{buc.b_checked ? "YES" : "NO"}</td>
+
         <td>
-          <button type="button" onClick={this.deleteHandle}>
+          <button
+            type="button"
+            onClick={this.deleteHandle}
+            className="w3-button w3-white w3-border w3-border-red w3-round-large"
+          >
             삭제
           </button>
         </td>

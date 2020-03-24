@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import BucketList from "./BucketList";
 import BucketInsert from "./BucketInsert";
+import "./css.css";
 
 const BUC_MAIN_URL = "http://localhost:5000/buc";
 const BUC_INSERT_URL = "http://localhost:5000/buc/insert";
@@ -52,11 +53,11 @@ class BucketMain extends Component {
       필드영역에 선언된 this.state를 분해하여 그중에 bbsList를 별도로 추출을 해두면
       tag 코드에서 사용할때 {bbsList} 형식으로 사용할수 있다
       */
-    const { bbsList } = this.state;
+    const { bucList } = this.state;
     return (
-      <div className="w3-container">
-        <header className="w3-green w3-padding-32 w3-center">
-          <h2>버켓리스트</h2>
+      <div className="w3-content">
+        <header className="w3-padding-32 w3-center w3-pink">
+          <h2>버킷 리스트</h2>
         </header>
         <section className="w3-container">
           <p className="w3-container w3-gray">

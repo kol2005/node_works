@@ -3,7 +3,8 @@ const bucketVO = mongoose.Schema({
   b_bucket: String,
   b_text: String,
   b_date: String,
-  b_checked: String
+  b_limitdate: String,
+  b_checked: Boolean
 });
 
 module.exports = mongoose.model("tbl_bucket", bucketVO);

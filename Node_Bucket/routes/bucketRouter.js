@@ -28,6 +28,15 @@ router.post("/", (req, res) => {
   });
 });
 
+router.put("/", (req, res) => {
+  console.log(req.body);
+  bucketVO
+    .update({ _id: req.body._id }, { $set: req.body })
+    .exec((err, result) => {
+      res.json(result);
+    });
+});
+
 router.delete("/", (req, res) => {
   console.log("바디값:", req.body);
   bucketVO.deleteOne({ _id: req.body._id }).exec((err, data) => {
