@@ -4,7 +4,7 @@ class BucketItem extends Component {
   state = {
     isEditing: false,
     b_bucket: "",
-    b_checked: false
+    b_checked: true
   };
 
   inputClick = ev => {
