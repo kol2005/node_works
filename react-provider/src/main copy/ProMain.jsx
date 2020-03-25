@@ -29,8 +29,11 @@ message 변수를 ProMain에 연동된 모든 컴포넌트에 전파하고
         <p>{this.state.message}</p>
         {/* ProMain에 선언된 state.message를 포함된 하위 컴포넌트에게 전달 */}
         <MProvider.Provider value={this.state}>
-          <ProSub1 />
-          <ProSub2 />
+          <ProSub1 message={this.state.message} />
+          <ProSub2
+            message={this.state.message}
+            changeMessage={this.changeMessage}
+          />
         </MProvider.Provider>
       </div>
     );
