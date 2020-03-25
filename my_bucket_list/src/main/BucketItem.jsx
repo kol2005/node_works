@@ -81,9 +81,14 @@ class BucketItem extends Component {
     if (this.state.isEditing) {
     }
     return (
-      <tr data-id={buc._id} onClick={this.toggleEdit} className="tr-buc-list">
-        <td className={`buc-date ${checked ? "checked" : ""}`}>{buc.b_date}</td>
-        <td className={`buc-bucket ${checked ? "checked" : ""}`}>
+      <tr data-id={buc._id} className="tr-buc-list">
+        <td className={`buc-date ${buc.b_checked ? "checked" : ""}`}>
+          {buc.b_date}
+        </td>
+        <td
+          onClick={this.toggleEdit}
+          className={`buc-bucket ${buc.b_checked ? "checked" : ""}`}
+        >
           {this.state.isEditing ? (
             <div>
               <input
@@ -103,7 +108,7 @@ class BucketItem extends Component {
             <span>{buc.b_bucket}</span>
           )}
         </td>
-        <td className={`buc-limitdate ${checked ? "checked" : ""}`}>
+        <td className={`buc-limitdate ${buc.b_checked ? "checked" : ""}`}>
           {buc.b_limitdate}
         </td>
         <td onClick={this.handleToggle}>{buc.b_checked ? "YES" : "NO"}</td>
