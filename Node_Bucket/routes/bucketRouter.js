@@ -29,6 +29,7 @@ router.post("/", (req, res) => {
 });
 
 router.put("/", (req, res) => {
+  req.body.b_complite = moment().format("YYYY[-]MM[-]DD");
   console.log(req.body);
   bucketVO
     .update({ _id: req.body._id }, { $set: req.body })

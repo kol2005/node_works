@@ -4,6 +4,7 @@ const bucketVO = mongoose.Schema({
   b_text: String,
   b_date: String,
   b_limitdate: String,
+  b_complite: String,
   b_checked: Boolean
 });
 

@@ -19,6 +19,7 @@ class BucketItem extends Component {
   handleToggle = ev => {
     if (window.confirm("완료하셨습니까?")) {
       const { buc, buc_main_url } = this.props;
+
       this.setState({ b_checked: !this.state.b_checked });
       const data = { _id: buc._id, b_checked: this.state.b_checked };
       fetch(buc_main_url, {
@@ -111,7 +112,9 @@ class BucketItem extends Component {
         <td className={`buc-limitdate ${buc.b_checked ? "checked" : ""}`}>
           {buc.b_limitdate}
         </td>
-        <td onClick={this.handleToggle}>{buc.b_checked ? "YES" : "NO"}</td>
+        <td onClick={this.handleToggle}>
+          {buc.b_checked ? buc.b_complite : "NO"}
+        </td>
 
         <td>
           <button

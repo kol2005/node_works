@@ -8,11 +8,6 @@ table {
   margin: auto;
 }
 
-tr-buc-list {
-  width: 100%;
-  margin: auto;
-}
-
 td.checked {
   text-decoration: line-through;
   color: #adb5bd;
