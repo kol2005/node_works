@@ -25,6 +25,7 @@ class BucketItem extends Component {
           <BucketItemView
             bucketItem={bucketItem}
             onEditing={this.handleOnEditing}
+            changeFlag={this.props.changeFlag}
           />
         )}
       </tr>

@@ -19,10 +19,51 @@ class BucketMain extends Component {
     ]
   };
 
-  b_flag = ["☆", "★", "○", "●"];
+  componentDidMount() {
+    const strBucketList = localStorage.bucketList;
+    // 문자열, 객체일 경우 if 조건에서 없으면 false, 있으면 true
+    if (strBucketList) {
+      this.setState({
+        bucketList: JSON.parse(strBucketList)
+      });
+      this.id = this.state.bucketList.length + 1;
+    }
+  }
 
-  flagClick = () => {
-    // this.setState([bucketList.b_flag : ++this.bucketList.b_flag]);
+  componentDidUpdate(preProps, preState) {
+    // 객체를 통째로 문자열로 변경
+    const preString = JSON.stringify(preState.bucketList);
+    const thisString = JSON.stringify(this.state.bucketList);
+
+    // web브라우저에 내장 DB에 문자열 저장 이때 key : bucketList
+    if (preString !== thisString) {
+      localStorage.bucketList = thisString;
+    }
+  }
+
+  changeFlag = id => {
+    // const b_flag = ["☆", "★", "○", "●"];
+    const b_flag = [
+      "중요",
+      "매우중요",
+      "매우매우매우중요",
+      "매우매우매우매우중요"
+    ];
+    this.setState({
+      bucketList: this.state.bucketList.map(bucket => {
+        if (bucket.b_id === id) {
+          let flag = ++bucket.b_flag % 4;
+          let flagText = b_flag[flag];
+          return {
+            ...bucket,
+            b_flag_text: flagText,
+            b_flag: flag
+          };
+        } else {
+          return bucket;
+        }
+      })
+    });
   };
 
   /* bucketList에 항목을 추가하여 전체 컴포넌트에 전파될수 있도록 메서드를 선언
@@ -47,11 +88,12 @@ class BucketMain extends Component {
     // state에 지정된 id값을 1 증가시킴으로써 생성을 하고
     // 리스트의 b_id 칼럼에 값을 저장
     const bucket = {
-      //   b_id: ++this.id,
+      b_id: ++this.id,
       b_flag: 0,
+      b_flag_text: "중요",
       b_start_date: date.toString(),
       b_title: b_title,
-      b_end_date: date.toString(),
+      b_end_date: "",
       b_end_check: false,
       b_cancle: false
     };
@@ -94,6 +136,7 @@ class BucketMain extends Component {
         <BucketList
           bucket_update={this.bucket_update}
           bucketList={this.state.bucketList}
+          changeFlag={this.changeFlag}
         />
       </div>
     );

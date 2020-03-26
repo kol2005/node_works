@@ -7,9 +7,10 @@ class BucketList extends Component {
 
     const list = bucketList.map(bucket => (
       <BucketItem
-        key={bucket.id}
+        key={bucket.b_id}
         bucket_update={this.props.bucket_update}
         bucketItem={bucket}
+        changeFlag={this.props.changeFlag}
       />
     ));
 
