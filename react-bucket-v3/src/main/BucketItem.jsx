@@ -3,10 +3,7 @@ import BucketItemView from "./BucketItemView";
 import BucketItemEdit from "./BucketItemEdit";
 
 class BucketItem extends Component {
-  state = {
-    isEditing: false
-  };
-
+  state = { isEditing: false };
   handleOnEditing = () => {
     this.setState({ isEditing: !this.state.isEditing });
   };
@@ -15,7 +12,7 @@ class BucketItem extends Component {
     const { bucketItem } = this.props;
 
     const item_cancel = {
-      backgroundColor: "#b3ff00",
+      backgroundColor: "yellow",
       color: "gray"
     };
 
