@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  script.
+    $(function(){
+      $("button.bbs-write").click(function(){
+        document.location.href="/bbs/input"
+      })
+    })
+  section.container-fluid
+    h1 게시판 리스트
+    .container.text-right
+    button.btn.btn-primary.bbs-write 작성
